@@ -31,7 +31,7 @@ class User {
         return tariff;
     }
 
-    public void getReport() throws IOException {
+    public void getReport() {
         total = tariff.getStartPrice();
         try (FileWriter fw = new FileWriter("." + System.getProperty("file.separator") + "reports" + System.getProperty("file.separator") + number + ".txt")) {
             fw.write(String.format("Tariff index: %s\n", tariffIndex));
@@ -46,6 +46,8 @@ class User {
             fw.write("----------------------------------------------------------------------------\n");
             fw.write(String.format(Locale.US, "|\t\t\t\t\t\t\t\t\t\t\tTotal Cost: |\t%.2f rubles |\n", total));
             fw.write("----------------------------------------------------------------------------\n");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
